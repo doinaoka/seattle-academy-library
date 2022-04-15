@@ -25,6 +25,13 @@
                     <form method="post" action="createAccount">
                         <div class="title">アカウントの作成</div>
                         <label class="label">メールアドレス</label> <input type="email" class="input" id="email" name="email" autocomplete="off" required> <label class="label">パスワード</label> <input type="password" class="input" id="password" name="password" required> <label class="label">パスワード（確認用）</label> <input type="password" class="input" id="passwordForCheck" name="passwordForCheck" required> <input type="submit" class="button primary" value="作成する">
+                        
+             
+                        
+                        <c:if test= "${!empty errorPassword}">
+                            <p class="error">${errorPassword}</p>
+                        </c:if>
+                        
                     </form>
                 </div>
                 <div class="authorization_navi">
@@ -32,6 +39,8 @@
                     <form method="get" action="<%=request.getContextPath()%>/">
                         <a class="authorization_link marker" href="javascript:void(0)" onclick="this.parentNode.submit()">ログイン</a>
                     </form>
+                    
+                    
                 </div>
             </div>
         </main>
