@@ -50,7 +50,7 @@ public class LoginController {
         // TODO パスワードとメールアドレスの組み合わせ存在チェック実装
             if (selectedUserInfo == null) {
  
-            	model.addAttribute("errorPassword","メールアドレスとパスワードが一致しません");
+            	model.addAttribute("errorMessage","メールアドレスとパスワードが一致しません");
             	return "login";
            
             }else {
