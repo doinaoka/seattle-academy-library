@@ -33,7 +33,7 @@ public class BooksService {
 
         // TODO 取得したい情報を取得するようにSQLを修正
         List<BookInfo> getedBookList = jdbcTemplate.query(
-                "select id,title,author,publisher,publish_date from books order by title asc",
+                "select id,title,author,publisher,thumbnail_url,publish_date from books order by title asc",
                 new BookInfoRowMapper());
 
         return getedBookList;
@@ -60,16 +60,26 @@ public class BooksService {
      * 書籍を登録する
      *
      * @param bookInfo 書籍情報
-     */
-    public void registBook(BookDetailsInfo bookInfo) {
+     */public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
-                + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','" 
-                + bookInfo.getThumbnailName() + "','"
-                + bookInfo.getThumbnailUrl() + "',"
-                + "now(),"
-                + "now())";
+         String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','" 
+                 + bookInfo.getThumbnailName() + "','"
+                 + bookInfo.getThumbnailUrl() + "',"
+                 + "now(),"
+                 + "now())";
+
+         jdbcTemplate.update(sql);
+     }
+     
+    public void deleteBook(Integer bookId) {
+
+        String sql = "delete from books where id= " + bookId +";";
 
         jdbcTemplate.update(sql);
     }
+    
+    
+    
+    
 }
