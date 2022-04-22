@@ -33,7 +33,7 @@ public class BooksService {
 
         // TODO 取得したい情報を取得するようにSQLを修正
         List<BookInfo> getedBookList = jdbcTemplate.query(
-                "select id,title,author,publisher,thumbnail_url,publish_date from books order by title asc",
+                "select id,title,author,publisher,thumbnail_url,publish_date,explanation,isbn from books order by title asc",
                 new BookInfoRowMapper());
 
         return getedBookList;
@@ -55,6 +55,17 @@ public class BooksService {
 
         return bookDetailsInfo;
     }
+    
+    //最新の情報を取得
+    public BookDetailsInfo getLatestBookInfo() {
+    	
+    	String sql = "select * from books where id=(select max(id) from books);";
+    	
+    	BookDetailsInfo latestBookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
+		return latestBookDetailsInfo;
+    	
+    }
+    
 
     /**
      * 書籍を登録する
@@ -62,8 +73,11 @@ public class BooksService {
      * @param bookInfo 書籍情報
      */public void registBook(BookDetailsInfo bookInfo) {
 
-         String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+         String sql = "INSERT INTO books (title, author,publisher,publish_date,explanation,isbn,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
                  + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','" 
+                 + bookInfo.getPublishDate() + "','"
+                 + bookInfo.getExplanation() + "','"
+                 + bookInfo.getIsbn() + "','"
                  + bookInfo.getThumbnailName() + "','"
                  + bookInfo.getThumbnailUrl() + "',"
                  + "now(),"
