@@ -99,7 +99,7 @@ public class AddBooksController {
         
         boolean requiredCheck = title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty();
         boolean publishDateCheck = ! (publishDate.length() == 8 && publishDate.matches("^[0-9]+$"));
-        boolean isbnCheck = !(isbn.length() == 10 || isbn.length() == 13);
+        boolean isbnCheck = !(isbn.length() == 10 || isbn.length() == 13 || isbn.length() == 0);
        
         //必須項目
         if(requiredCheck) {
