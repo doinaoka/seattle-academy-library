@@ -41,14 +41,12 @@
                 </div>
                 <div class="content_right">
                     
-                    <c:if test= "${!empty errorRequired}">
-                        <p class="error">${errorRequired}</p>
-                    </c:if>
-                    <c:if test= "${!empty errorPublishDate}">
-                        <p class="error">${errorPublishDate}</p>
-                    </c:if>
-                    <c:if test= "${!empty errorISBN}">
-                        <p class="error">${errorISBN}</p>
+                    <c:if test="${!empty errorListMessages}">
+                        <div class="error">
+                            <c:forEach var="errorListMessage" items="${errorListMessages}">
+                                <p>${errorListMessage}</p>
+                            </c:forEach>
+                        </div>
                     </c:if>
                     
                     <div>

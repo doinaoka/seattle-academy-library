@@ -1,5 +1,7 @@
 package jp.co.seattle.library.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -68,6 +70,8 @@ public class AddBooksController {
         bookInfo.setExplanation(explanation);
         bookInfo.setIsbn(isbn);
         
+        
+        
 
         // クライアントのファイルシステムにある元のファイル名を設定する
         String thumbnail = file.getOriginalFilename();
@@ -91,31 +95,34 @@ public class AddBooksController {
             }
         }   
 
+        List<String> errorLists = new ArrayList<String>(); 
+        
         boolean requiredCheck = title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty();
         boolean publishDateCheck = ! (publishDate.length() == 8 && publishDate.matches("^[0-9]+$"));
         boolean isbnCheck = !(isbn.length() == 10 || isbn.length() == 13);
-        
+       
         //必須項目
         if(requiredCheck) {
         	
-        	model.addAttribute("errorRequired","必須項目を入力してください");    	
+        	errorLists.add("必須項目を入力してください");    	
         }
         
         //出版日
         if(publishDateCheck) {
         	
-        	model.addAttribute("errorPublishDate","出版日は半角数字のYYYYMMDD形式で入力してください");       		
+        	errorLists.add("出版日は半角数字のYYYYMMDD形式で入力してください");       		
         	    	
         }
         
         //ISBN
         if (isbnCheck) {
         	
-    		model.addAttribute("errorISBN","ISBNの桁数または半角数字が正しくありません");       		
+    		errorLists.add("ISBNの桁数または半角数字が正しくありません");       		
     	  		
     	}       
         
         if (requiredCheck || publishDateCheck || isbnCheck) {
+        	model.addAttribute("errorListMessages",errorLists);
         	model.addAttribute("bookDetailsInfo",bookInfo);
         	return "addBook";
         }
@@ -124,9 +131,7 @@ public class AddBooksController {
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
         model.addAttribute("resultMessage", "登録完了");
-        
-     
-		booksService.registBook(bookInfo);    
+ 
 
 		// TODO 登録した書籍の詳細情報を表示するように実装  
 		model.addAttribute("bookDetailsInfo", booksService.getLatestBookInfo());
