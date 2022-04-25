@@ -105,7 +105,7 @@
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="explanation">
-                        </c:if>
+                        </c:if>％
                     </div>
                     
                     
@@ -117,7 +117,7 @@
                 <button type="submit" id="add-btn" class="btn_addBook">登録</button>
             </div>
         </form>
-        </div>
+       
     </main>
 </body>
 </html>
