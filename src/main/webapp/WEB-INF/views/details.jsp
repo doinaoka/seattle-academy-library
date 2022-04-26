@@ -88,7 +88,7 @@
             <form method="post" action="deleteBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
             </form>
-       </div>
+        </div>
     </main>
 </body>
 </html>
