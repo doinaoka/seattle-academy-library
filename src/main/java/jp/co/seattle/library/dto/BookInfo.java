@@ -22,13 +22,14 @@ public class BookInfo {
     private String publishDate;
 
     private String thumbnail;
+   
 
     public BookInfo() {
 
     }
 
     // コンストラクタ
-    public BookInfo(int bookId, String title, String author, String publisher, String publishDate, String thumbnail) {
+    public BookInfo(int bookId, String title, String author, String publisher, String publishDate, String thumbnail, String explanation, String isbn) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
