@@ -56,7 +56,10 @@ public class BooksService {
         return bookDetailsInfo;
     }
     
-    //最新の情報を取得
+    /**
+     * 最新の情報を取得
+     * @return
+     */
     public BookDetailsInfo getLatestBookInfo() {
     	
     	String sql = "select * from books where id=(select max(id) from books);";
