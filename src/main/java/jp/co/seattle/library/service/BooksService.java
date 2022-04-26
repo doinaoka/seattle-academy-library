@@ -58,7 +58,7 @@ public class BooksService {
     
     /**
      * 最新の情報を取得
-     * @return
+     * @return 最新書籍情報
      */
     public BookDetailsInfo getLatestBookInfo() {
     	
