@@ -76,7 +76,7 @@
         </div>
         <div class="edtDelBookBtn_box">
            
-           <form method="post" action="">
+            <form method="post" action="">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
             
@@ -84,7 +84,7 @@
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
             </form>
             
-            <form method="post" action="">
+            <form method="post" action="<%=request.getContextPath()%>/edit">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
            

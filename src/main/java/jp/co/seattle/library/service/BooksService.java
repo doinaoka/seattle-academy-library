@@ -96,7 +96,22 @@ public class BooksService {
         jdbcTemplate.update(sql);
     }
     
-    
+    public void editBook(BookDetailsInfo bookInfo) {
+
+        String sql = "update books"
+        		+ " set title='"+ bookInfo.getTitle() +"',"
+        		+ "author='"+ bookInfo.getAuthor() +"',"
+        		+ "publisher='"+ bookInfo.getPublisher() +"',"
+        		+ "publish_date='"+ bookInfo.getPublishDate() +"',"
+        		+ "explanation='"+ bookInfo.getExplanation() +"',"
+        		+ "isbn='"+ bookInfo.getIsbn() +"',"
+        		+ "thumbnail_url='"+  bookInfo.getThumbnailUrl() +"',"
+        		+ "reg_date=now(),"
+        		+ "upd_date=now()"
+        		+ "where id = "+ bookInfo.getBookId() ;
+
+        jdbcTemplate.update(sql);
+    }
     
     
 }
