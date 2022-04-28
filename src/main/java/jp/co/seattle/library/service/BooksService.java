@@ -71,7 +71,7 @@ public class BooksService {
     
 
     /**
-     * 書籍を登録する
+     * 書籍を編集する
      *
      * @param bookInfo 書籍情報
      */public void registBook(BookDetailsInfo bookInfo) {
@@ -95,6 +95,12 @@ public class BooksService {
 
         jdbcTemplate.update(sql);
     }
+    
+    
+    /**
+     * 書籍を編集する
+     * 
+     */
     
     public void editBook(BookDetailsInfo bookInfo) {
 
