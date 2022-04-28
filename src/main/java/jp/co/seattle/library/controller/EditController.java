@@ -32,6 +32,14 @@ public class EditController {
     private ThumbnailService thumbnailService;
 
 	
+	/**
+     * 書籍情報を編集する
+     * @param locale
+     * @param bookId
+     * @param model
+     * @return edit画面に遷移
+     */
+	
 	
 	@Transactional
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -46,7 +54,20 @@ public class EditController {
 	}
 
 	
-	
+	/**
+     * 書籍情報を更新する
+     * @param locale
+     * @param bookId
+     * @param title
+     * @param author
+     * @param publisher
+     * @param publish_date
+     * @param explanation
+     * @param isbn
+     * @param file
+     * @param model
+     * @return 遷移先画面
+     */
 	
 	@Transactional
     @RequestMapping(value = "/updateBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
