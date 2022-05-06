@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,9 +65,9 @@ public class bulkAddBookController {
         
         
         try(BufferedReader br = new BufferedReader(new InputStreamReader(uploadFile.getInputStream(), StandardCharsets.UTF_8))) {
-        	       
+        	line = br.readLine();       
             //1行ずつ読み込みを行う
-            while((line = br.readLine()) != null) {
+            while (!StringUtils.isEmpty(line)) {
             	final String[] split = line.split(",", -1);
             	
             	final BookDetailsInfo bookInfo = new BookDetailsInfo();
@@ -75,6 +76,7 @@ public class bulkAddBookController {
             	bookInfo.setPublisher(split[2]);
             	bookInfo.setPublishDate(split[3]);
             	bookInfo.setIsbn(split[4]);
+            	bookInfo.setExplanation(split[5]);
             	
             	               	
                 boolean requiredCheck = split[0].isEmpty() || split[1].isEmpty() || split[2].isEmpty() || split[3].isEmpty();
@@ -92,6 +94,7 @@ public class bulkAddBookController {
                     
                 //行数
                 count ++; 
+                line = br.readLine();
                        	
             }
             
