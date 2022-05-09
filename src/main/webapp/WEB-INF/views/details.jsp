@@ -45,6 +45,17 @@
                         <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
+                <div>
+                    <span>
+                        <c:if test="${!empty errorMessage}">
+                        <div class="error">
+                            <c:forEach var="errorMessage" items="${errorMessage}">
+                                <p>${errorMessage}</p>
+                            </c:forEach>
+                        </div>
+                    </c:if>
+                    </span>
+                </div>
             </div>
             <div class="content_right">
                 <div>
@@ -76,7 +87,7 @@
         </div>
         <div class="edtDelBookBtn_box">
            
-            <form method="post" action="">
+            <form method="post" action="rentBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
             
