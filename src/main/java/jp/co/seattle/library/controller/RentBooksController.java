@@ -32,6 +32,7 @@ public class RentBooksController {
      * @param model モデル情報
      * @return 遷移先画面名
      */
+	
     @Transactional
     @RequestMapping(value = "/rentBook", method = RequestMethod.POST)
     public String rentBook(
@@ -39,15 +40,16 @@ public class RentBooksController {
             @RequestParam("bookId") Integer bookId,
             Model model) {
         logger.info("Welcome rentBooks! The client locale is {}.", locale);
+               
+        Integer count = RentBooksService.countRentBook(bookId);
+        RentBooksService.rentBook(bookId);
+        Integer count2 = RentBooksService.countRentBook(bookId);
         
      // エラー文
-        if (bookId != null) {
+        if (count == count2) {
         	
         	model.addAttribute("errorMessage","貸出し済みです。");
-        	
-        }else {
-        	
-        	RentBooksService.rentBook(bookId);
+
         	
         }
         
