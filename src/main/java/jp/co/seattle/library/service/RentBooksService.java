@@ -27,6 +27,14 @@ public class RentBooksService {
 	}
 	
 	
+	public void returnBook(Integer bookId) {
+
+		String sql = "delete FROM rentBooks where book_id = " + bookId;
+
+		jdbcTemplate.update(sql);
+		
+	}
+	
 	
 	public Integer countRentBook(Integer bookId) {
         
