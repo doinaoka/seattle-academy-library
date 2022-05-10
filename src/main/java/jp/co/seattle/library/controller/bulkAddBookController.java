@@ -37,7 +37,7 @@ public class bulkAddBookController {
 	private Object list;
     
 	/**
-	 * 
+	 * 書籍情報一括登録画面に推移する
 	 * @param model モデル
 	 * @return　遷移先画面
 	 */
@@ -51,7 +51,7 @@ public class bulkAddBookController {
 
 	
 	/**
-	 * 
+	 * 書籍情報を一括登録する
 	 * @param locale ロケール情報
 	 * @param uploadFile　CSVファイル
 	 * @param model　モデル
