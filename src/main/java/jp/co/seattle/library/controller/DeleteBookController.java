@@ -25,7 +25,7 @@ public class DeleteBookController {
 	@Autowired
 	private BooksService booksService;
 	@Autowired
-	private RentBooksService RentBooksService;
+	private RentBooksService rentBooksService;
 
 	/**
 	 * 対象書籍を削除する
@@ -40,7 +40,7 @@ public class DeleteBookController {
 	public String deleteBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
 		logger.info("Welcome delete! The client locale is {}.", locale);
 
-		Integer count = RentBooksService.countRentBook(bookId);
+		Integer count = rentBooksService.countRentBook(bookId);
 
 		if (count > 0) {
 
