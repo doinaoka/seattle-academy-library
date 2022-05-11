@@ -36,6 +36,11 @@ public class bulkAddBookController {
 
 	private Object list;
     
+	/**
+	 * 書籍情報一括登録画面に推移する
+	 * @param model モデル
+	 * @return　遷移先画面
+	 */
 	
 	@RequestMapping(value = "/bulkAddBook", method = RequestMethod.GET) //value＝actionで指定したパラメータ
     //RequestParamでname属性を取得
@@ -45,7 +50,13 @@ public class bulkAddBookController {
 	
 
 	
-	
+	/**
+	 * 書籍情報を一括登録する
+	 * @param locale ロケール情報
+	 * @param uploadFile　CSVファイル
+	 * @param model　モデル
+	 * @return　遷移先画面
+	 */
     @Transactional
     @RequestMapping(value = "/bulkRegistBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
      
@@ -68,16 +79,7 @@ public class bulkAddBookController {
         	line = br.readLine();       
             //1行ずつ読み込みを行う
             while (!StringUtils.isEmpty(line)) {
-            	final String[] split = line.split(",", -1);
-            	
-            	final BookDetailsInfo bookInfo = new BookDetailsInfo();
-            	bookInfo.setTitle(split[0]);
-            	bookInfo.setAuthor(split[1]);
-            	bookInfo.setPublisher(split[2]);
-            	bookInfo.setPublishDate(split[3]);
-            	bookInfo.setIsbn(split[4]);
-            	bookInfo.setExplanation(split[5]);
-            	
+            	String[] split = line.split(",", -1);
             	               	
                 boolean requiredCheck = split[0].isEmpty() || split[1].isEmpty() || split[2].isEmpty() || split[3].isEmpty();
                 boolean publishDateCheck = ! (split[3].length() == 8 && split[3].matches("^[0-9]+$"));
@@ -88,7 +90,14 @@ public class bulkAddBookController {
                 	errorLists.add(count + "行目の書籍登録でエラーが起きました。");
                 	
                 }else {
-
+                	BookDetailsInfo bookInfo = new BookDetailsInfo();
+                	bookInfo.setTitle(split[0]);
+                	bookInfo.setAuthor(split[1]);
+                	bookInfo.setPublisher(split[2]);
+                	bookInfo.setPublishDate(split[3]);
+                	bookInfo.setIsbn(split[4]);
+                	bookInfo.setExplanation(split[5]);
+                	
                 	bookLists.add(bookInfo);
                 }
                     
@@ -98,7 +107,7 @@ public class bulkAddBookController {
                        	
             }
             
-            if(bookLists.isEmpty()) {
+            if(bookLists.size() == 0) {
             	model.addAttribute("errorMessage", "CSVに書籍情報がありません。");
             	return "bulkAddBook";  
             }
