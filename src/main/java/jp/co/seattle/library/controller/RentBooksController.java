@@ -20,7 +20,7 @@ public class RentBooksController {
 	final static Logger logger = LoggerFactory.getLogger(RentBooksController.class);
 	
 	@Autowired
-    private RentBooksService RentBooksService;
+    private RentBooksService rentBooksService;
 	@Autowired
     private BooksService booksService;
 	
@@ -41,12 +41,12 @@ public class RentBooksController {
             Model model) {
         logger.info("Welcome rentBooks! The client locale is {}.", locale);
                
-        Integer count = RentBooksService.countRentBook(bookId);
-        RentBooksService.rentBook(bookId);
-        Integer count2 = RentBooksService.countRentBook(bookId);
+        Integer count = rentBooksService.countRentBook(bookId);
+        rentBooksService.rentBook(bookId);
+        Integer rentCount = rentBooksService.countRentBook(bookId);
         
      // エラー文
-        if (count == count2) {
+        if (count == rentCount) {
         	
         	model.addAttribute("errorMessage","貸出し済みです。");
 
