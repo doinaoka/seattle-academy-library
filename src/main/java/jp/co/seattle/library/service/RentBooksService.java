@@ -35,6 +35,12 @@ public class RentBooksService {
 		
 	}
 	
+	/**
+	 * 借りた書籍を数える
+	 * @param bookId 書籍ID
+	 * @return 遷移先
+	 */
+
 	
 	public Integer countRentBook(Integer bookId) {
         
