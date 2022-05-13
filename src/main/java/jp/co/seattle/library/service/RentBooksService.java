@@ -26,6 +26,11 @@ public class RentBooksService {
 		
 	}
 	
+	/**
+	 * 書籍を返却する
+	 * @param bookId　書籍ID
+	 */
+
 	
 	public void returnBook(Integer bookId) {
 
@@ -34,7 +39,7 @@ public class RentBooksService {
 		jdbcTemplate.update(sql);
 		
 	}
-	
+
 	/**
 	 * 借りた書籍を数える
 	 * @param bookId 書籍ID
