@@ -40,13 +40,13 @@ public class ReturnBooksController {
             Model model) {
         logger.info("Welcome returnBooks! The client locale is {}.", locale);
         
-        Integer count = rentBooksService.countRentBook(bookId);
+        Integer rentBookCount = rentBooksService.countRentBook(bookId);
         
-        if(count > 0) {
+        if(rentBookCount > 0) {
         	
         	rentBooksService.returnBook(bookId);
         	
-        }else if(count == 0) {
+        }else if(rentBookCount == 0) {
         	
         	model.addAttribute("errorMessage","貸出しされていません。");
         	
