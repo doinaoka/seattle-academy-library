@@ -26,6 +26,10 @@ public class RentBooksService {
 		
 	}
 	
+	/**
+	 * 書籍を返却する
+	 * @param bookId　書籍ID
+	 */
 
 	
 	public void returnBook(Integer bookId) {
