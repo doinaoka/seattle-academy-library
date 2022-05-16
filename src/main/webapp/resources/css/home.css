@@ -65,13 +65,17 @@ input {
 }
 
 /* ここから追加 */
+.separate{
+	display: flex;
+	justify-content: space-between;
+}
+
 .search_box {
     position: relative;
     margin-left: -5px;
 }
 
 .search1 {
-    border-radius: 20px 0 0 20px;
     font-size: 15px;
     width: 325px;
     padding: 4px 10px;
