@@ -26,13 +26,7 @@ public class RentBooksService {
 		
 	}
 	
-<<<<<<< HEAD
-=======
-	/**
-	 * 書籍を返却する
-	 * @param bookId　書籍ID
-	 */
->>>>>>> feature/task_11
+
 
 	
 	public void returnBook(Integer bookId) {
