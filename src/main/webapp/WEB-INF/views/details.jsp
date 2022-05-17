@@ -35,25 +35,22 @@
             <div class="content_left">
                 <span>書籍の画像</span>
                 <div class="book_thumnail">
-                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> 
-                        <c:if test="${bookDetailsInfo.thumbnailUrl == 'null'}">
+                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> <c:if test="${bookDetailsInfo.thumbnailUrl == 'null'}">
                             <img class="book_noimg" src="resources/img/noImg.png">
-                        </c:if>
-                        <c:if test="${bookDetailsInfo.thumbnailUrl != 'null'}">
+                        </c:if> <c:if test="${bookDetailsInfo.thumbnailUrl != 'null'}">
                             <img class="book_noimg" src="${bookDetailsInfo.thumbnailUrl}">
-                        </c:if> 
-                        <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
+                        </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
+                <span>${bookDetailsInfo.judgment}</span>
                 <div>
-                    <span>
-                        <c:if test="${!empty errorMessage}">
-                        <div class="error">
-                            <c:forEach var="errorMessage" items="${errorMessage}">
-                                <p>${errorMessage}</p>
-                            </c:forEach>
-                        </div>
-                    </c:if>
+                    <span> <c:if test="${!empty errorMessage}">
+                            <div class="error">
+                                <c:forEach var="errorMessage" items="${errorMessage}">
+                                    <p>${errorMessage}</p>
+                                </c:forEach>
+                            </div>
+                        </c:if>
                     </span>
                 </div>
             </div>
@@ -82,23 +79,18 @@
                     <span>説明文</span>
                     <p>${bookDetailsInfo.explanation}</p>
                 </div>
-                
             </div>
         </div>
         <div class="edtDelBookBtn_box">
-           
             <form method="post" action="rentBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
-            
             <form method="post" action="returnBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
             </form>
-            
             <form method="post" action="<%=request.getContextPath()%>/edit">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
-           
             <form method="post" action="deleteBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
             </form>

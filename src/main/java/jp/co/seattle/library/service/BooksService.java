@@ -48,8 +48,9 @@ public class BooksService {
     public BookDetailsInfo getBookInfo(int bookId) {
 
         // JSPに渡すデータを設定する
-        String sql = "SELECT * FROM books where id ="
-                + bookId;
+        String sql = "select * , case when book_id > 0 then '貸出し中' else '貸出し可' end "
+        		+ "from books left outer join rentbooks on books.id = rentbooks.book_id "
+        		+ "where books.id =" + bookId;
 
         BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
@@ -62,7 +63,9 @@ public class BooksService {
      */
     public BookDetailsInfo getLatestBookInfo() {
     	
-    	String sql = "select * from books where id=(select max(id) from books);";
+    	String sql ="select * , case when book_id > 0 then '貸出し中' else '貸出し可' end "
+        		+ "from books left outer join rentbooks on books.id = rentbooks.book_id "
+        		+ "where books.id =(select max(id) from books) ";
     	
     	BookDetailsInfo latestBookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 		return latestBookDetailsInfo;
@@ -89,6 +92,10 @@ public class BooksService {
          jdbcTemplate.update(sql);
      }
      
+   /**
+    * 書籍を削除する  
+    * @param bookId
+    */
     public void deleteBook(Integer bookId) {
 
         String sql = "delete from books where id= " + bookId +";";

@@ -26,12 +26,12 @@ public class RentBooksService {
 		
 	}
 	
+
+
 	/**
 	 * 書籍を返却する
-	 * @param bookId　書籍ID
+	 * @param bookId 書籍ID
 	 */
-
-	
 	public void returnBook(Integer bookId) {
 
 		String sql = "delete FROM rentBooks where book_id = " + bookId;
@@ -45,7 +45,7 @@ public class RentBooksService {
 	 * @param bookId 書籍ID
 	 * @return 遷移先
 	 */
-	
+
 	
 	public Integer countRentBook(Integer bookId) {
         
