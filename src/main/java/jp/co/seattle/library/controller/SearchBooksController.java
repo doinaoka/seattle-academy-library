@@ -33,11 +33,17 @@ public class SearchBooksController {
     @RequestMapping(value = "/searchBook", method = RequestMethod.POST)
 	public String searchBook(Locale locale,
 			@RequestParam("search") String search,
+			@RequestParam("radio") String radio,
 			Model model) {
 	logger.info("Welcome updateBook.java! The client locale is {}.", locale);
 	
+	if(radio.equals("partical_matching")) {
+		model.addAttribute("bookList", booksService.searchBookList(search));
+	}else {
+		model.addAttribute("bookList", booksService.perfectMatchingBookList(search));
+	}
 	
-	model.addAttribute("bookList", booksService.searchBookList(search));
+	
     return "home";
 	
 	}

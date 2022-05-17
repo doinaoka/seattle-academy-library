@@ -27,7 +27,11 @@
     <main>
         <div class="separate">
             <h1>Home</h1>
-            <form method="post" action="searchBook">
+            <form method="post" action="searchBook" class="inline">
+                <ul>
+                    <li class="book_publisher"><input type="radio" name="radio" value="partical_matching" id="radio1" checked><label for="radio1">部分一致</label></li>
+                    <li class="book_publisher"><input type="radio" name="radio" value="perfect_matching" id="radio2"><label for="radio2">完全一致</label></li>
+                </ul>
                 <input type="search" name="search" class="search1" placeholder="入力してください">
                 <button type="submit">検索</button>
             </form>

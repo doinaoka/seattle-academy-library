@@ -105,7 +105,7 @@
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="explanation">
-                        </c:if>％
+                        </c:if>
                     </div>
                     
                     
