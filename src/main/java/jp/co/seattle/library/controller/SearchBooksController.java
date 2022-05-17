@@ -22,7 +22,13 @@ public class SearchBooksController {
     private BooksService booksService;
 	
 	
-
+	/**
+	 * 書籍を検索する
+	 * @param locale
+	 * @param search 検索ワード　
+	 * @param model
+	 * @return　遷移先
+	 */
 	@Transactional
     @RequestMapping(value = "/searchBook", method = RequestMethod.POST)
 	public String searchBook(Locale locale,
