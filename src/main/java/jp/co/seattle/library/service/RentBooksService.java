@@ -28,7 +28,10 @@ public class RentBooksService {
 	
 
 
-	
+	/**
+	 * 書籍を返却する
+	 * @param bookId 書籍ID
+	 */
 	public void returnBook(Integer bookId) {
 
 		String sql = "delete FROM rentBooks where book_id = " + bookId;
