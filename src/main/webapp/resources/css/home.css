@@ -65,6 +65,7 @@ input {
 }
 
 /* ここから追加 */
+
 .separate{
 	display: flex;
 	justify-content: space-between;

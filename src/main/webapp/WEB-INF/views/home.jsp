@@ -23,6 +23,7 @@
                 <li><a href="<%=request.getContextPath()%>/">ログアウト</a></li>
             </ul>
         </div>
+        
     </header>
     <main>
         <div class="separate">
