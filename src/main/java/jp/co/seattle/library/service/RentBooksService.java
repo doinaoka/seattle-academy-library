@@ -51,7 +51,6 @@ public class RentBooksService {
 	 */
 	public void returnBook(Integer bookId) {
 
-		//String sql = "delete FROM rentBooks where book_id = " + bookId;
 		String sql ="update rentbooks set rent_date = null, return_date  = current_date where book_id =" +bookId;
 
 		jdbcTemplate.update(sql);
