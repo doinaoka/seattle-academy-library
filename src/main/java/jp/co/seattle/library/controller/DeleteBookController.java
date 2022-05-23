@@ -43,19 +43,28 @@ public class DeleteBookController {
 
 		HistoryInfo selectedHistoryInfo = rentBooksService.selectHistoryInfo(bookId);
 
-		if (selectedHistoryInfo.getRentDate() != null) {
-
-			model.addAttribute("errorMessage", "貸出し中のため削除できません。");
-			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-			return "details";
-
-		} else {
-
+		if ( selectedHistoryInfo == null) {
 			booksService.deleteBook(bookId);
 			model.addAttribute("bookList", booksService.getBookList());
 			return "home";
+	
+		}else {
+			if (selectedHistoryInfo.getRentDate() != null) {
 
+				model.addAttribute("errorMessage", "貸出し中のため削除できません。");
+				model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+				return "details";
+
+			} else {
+
+				booksService.deleteBook(bookId);
+				model.addAttribute("bookList", booksService.getBookList());
+				return "home";
+
+			}
 		}
+		
+		
 
 	}
 

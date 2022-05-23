@@ -23,12 +23,10 @@ public class RentBooksService {
 	 * @param title　タイトル
 	 */
 	 
-	public void rentBook(Integer bookId, String title) {
+	public void rentBook(Integer bookId) {
 
-		//String sql = "INSERT INTO rentBooks(book_id) SELECT " + bookId +" WHERE NOT EXISTS ( SELECT * FROM rentBooks WHERE book_id = " + bookId + ")";
-		String sql = "INSERT INTO rentBooks(book_id,rent_date,title) SELECT "
-				+ bookId + ",current_date, '"
-				+ title + "' WHERE NOT EXISTS ( SELECT * FROM rentBooks WHERE book_id = "
+		String sql = "INSERT INTO rentBooks(book_id,rent_date) SELECT "
+				+ bookId + ",current_date WHERE NOT EXISTS ( SELECT * FROM rentBooks WHERE book_id = "
 				+ bookId +")";
 		
 		jdbcTemplate.update(sql);
@@ -84,7 +82,7 @@ public class RentBooksService {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
 		List<HistoryInfo> historyList = jdbcTemplate.query(
-				"select book_id ,books.title,rent_date ,return_date from rentbooks left outer join books on books.id = rentbooks.book_id ;",
+				"select book_id ,books.title,rent_date ,return_date from rentbooks left outer join books on books.id = rentbooks.book_id",
 				new HistoryInfoRowMapper());
 
 		return historyList;
@@ -98,8 +96,7 @@ public class RentBooksService {
 	 */
 	public HistoryInfo selectHistoryInfo(Integer bookId) {
 		
-		String sql = "select book_id ,books.title,rent_date ,return_date from rentbooks left outer join books on books.id = rentbooks.book_id "
-				+ " where books.id =262;" +bookId;
+		String sql = "select book_id ,books.title,rent_date ,return_date from rentbooks left outer join books on books.id = rentbooks.book_id where books.id =" +bookId;
 		
 		try {
 			HistoryInfo selectedHistoryInfo = jdbcTemplate.queryForObject(sql, new HistoryInfoRowMapper());

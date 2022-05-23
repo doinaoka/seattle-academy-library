@@ -36,14 +36,14 @@ public class RentBooksController {
 
 	@Transactional
 	@RequestMapping(value = "/rentBook", method = RequestMethod.POST)
-	public String rentBook(Locale locale, @RequestParam("bookId") Integer bookId, @RequestParam("title") String title,
+	public String rentBook(Locale locale, @RequestParam("bookId") Integer bookId,
 			Model model) {
 		logger.info("Welcome rentBooks! The client locale is {}.", locale);
 
 		HistoryInfo selectedHistoryInfo = rentBooksService.selectHistoryInfo(bookId);
 
 		if (selectedHistoryInfo == null) {
-			rentBooksService.rentBook(bookId, title);
+			rentBooksService.rentBook(bookId);
 
 		} else {
 			if (selectedHistoryInfo.getRentDate() == null) {

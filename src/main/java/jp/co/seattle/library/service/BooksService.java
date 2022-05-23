@@ -94,7 +94,8 @@ public class BooksService {
 	 */
 	public void deleteBook(Integer bookId) {
 
-		String sql = "delete from books where id= " + bookId + ";";
+		String sql = "with deleted as(delete from books where id = " +bookId+ " RETURNING id) "
+				+ "delete from rentbooks where book_id in (select id from deleted)";
 
 		jdbcTemplate.update(sql);
 	}
