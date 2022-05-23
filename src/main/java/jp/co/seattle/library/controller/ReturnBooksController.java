@@ -39,11 +39,16 @@ public class ReturnBooksController {
 		logger.info("Welcome returnBooks! The client locale is {}.", locale);
 
 		HistoryInfo selectedHistoryInfo = rentBooksService.selectHistoryInfo(bookId);
-
-		if (selectedHistoryInfo.getRentDate() == null) {
+		
+		if ( selectedHistoryInfo == null) {
 			model.addAttribute("errorMessage", "貸出しされていません。");
-		} else {
-			rentBooksService.returnBook(bookId);
+	
+		}else {
+			if (selectedHistoryInfo.getRentDate() == null) {
+				model.addAttribute("errorMessage", "貸出しされていません。");
+			} else {
+				rentBooksService.returnBook(bookId);
+			}
 		}
 
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
