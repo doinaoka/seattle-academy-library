@@ -84,7 +84,7 @@ public class RentBooksService {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
 		List<HistoryInfo> historyList = jdbcTemplate.query(
-				"select book_id,title,rent_date,return_date from rentbooks ;",
+				"select book_id ,books.title,rent_date ,return_date from rentbooks left outer join books on books.id = rentbooks.book_id ;",
 				new HistoryInfoRowMapper());
 
 		return historyList;
@@ -98,7 +98,8 @@ public class RentBooksService {
 	 */
 	public HistoryInfo selectHistoryInfo(Integer bookId) {
 		
-		String sql = "select book_id ,title,rent_date ,return_date from rentbooks where book_id  =" +bookId;
+		String sql = "select book_id ,books.title,rent_date ,return_date from rentbooks left outer join books on books.id = rentbooks.book_id "
+				+ " where books.id =262;" +bookId;
 		
 		try {
 			HistoryInfo selectedHistoryInfo = jdbcTemplate.queryForObject(sql, new HistoryInfoRowMapper());
