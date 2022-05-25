@@ -65,6 +65,7 @@ input {
 }
 
 /* ここから追加 */
+
 .separate{
 	display: flex;
 	justify-content: space-between;
@@ -144,7 +145,7 @@ img.book_noimg, img.book_img{
     font-size: 12px;
 }
 
-a.btn_add_book,a.btn_bulk_book, button.btn_addBook,button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist {
+a.btn_add_book,a.btn_bulk_book,a.btn_history, button.btn_addBook,button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist {
     display: inline-block;
     font-size: 16px;
     font-weight: bold;
@@ -160,6 +161,9 @@ a.btn_add_book,a.btn_bulk_book, button.btn_addBook,button.btn_editBook, button.b
 }
 a.btn_bulk_book{
 	background-color: #66cdaa;
+}
+a.btn_history{
+	background-color: #FF9966;
 }
 button.btn_editBook{
     background-color: #9ec34b;

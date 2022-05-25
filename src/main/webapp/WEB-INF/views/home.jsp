@@ -23,16 +23,23 @@
                 <li><a href="<%=request.getContextPath()%>/">ログアウト</a></li>
             </ul>
         </div>
+        
     </header>
     <main>
         <div class="separate">
             <h1>Home</h1>
-            <form method="post" action="searchBook">
+            <form method="post" action="searchBook" class="inline">
+                <ul>
+                    <li class="book_publisher"><input type="radio" name="radio" value="partical_matching" id="radio1" checked><label for="radio1">部分一致</label></li>
+                    <li class="book_publisher"><input type="radio" name="radio" value="perfect_matching" id="radio2"><label for="radio2">完全一致</label></li>
+                </ul>
                 <input type="search" name="search" class="search1" placeholder="入力してください">
                 <button type="submit">検索</button>
             </form>
         </div>
-        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkAddBook" class="btn_bulk_book">一括登録</a>
+        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> 
+        <a href="<%=request.getContextPath()%>/bulkAddBook" class="btn_bulk_book">一括登録</a>
+        <a href="<%=request.getContextPath()%>/history" class="btn_history">貸出履歴一覧</a>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
                 <div class="error_msg">${resultMessage}</div>
